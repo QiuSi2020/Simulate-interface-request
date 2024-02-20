@@ -21,7 +21,7 @@ const port = 3000
 
 // 这里的all的意思是：post请求、get请求、put请求等等的请求方式都进到这里
 app.all('*', (req, res, next) => {
-    // 设置允许跨域的域名（ * 代表允许任意域名跨域）
+    // 设置允许跨域的域名（ * 代表允许任意域名跨域）（此处是当前项目运行后的浏览地址）
     res.setHeader("Access-Control-Allow-Origin", "http://localhost:8082")
 
     // 允许该跨域的域名发送 Content-Type 请求头
