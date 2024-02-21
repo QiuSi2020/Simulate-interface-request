@@ -42,16 +42,24 @@ app.listen(
 app.get('/dataOne', (req, res) => {
     // res.send('Hello World!')
     res.jsonp({
-        name: "张三",
-        age: 18
+        msg: 'success',
+        data: {
+            name: "张三",
+            age: 18
+        },
+        code: '200'
     })
 })
 
 // 定义接口 two
 app.get('/dataTwo', (req, res) => {
     res.jsonp({
-        name: "李四",
-        age: 20
+        msg: 'success',
+        data: {
+            name: "李四",
+            age: 20
+        },
+        code: '200'
     })
 })
 
