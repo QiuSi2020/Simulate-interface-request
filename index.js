@@ -22,7 +22,8 @@ const port = 3000
 // 这里的all的意思是：post请求、get请求、put请求等等的请求方式都进到这里
 app.all('*', (req, res, next) => {
     // 设置允许跨域的域名（ * 代表允许任意域名跨域）（此处是当前项目运行后的浏览地址）
-    res.setHeader("Access-Control-Allow-Origin", "http://localhost:8082")
+    res.setHeader("Access-Control-Allow-Origin", "*")
+    // res.setHeader("Access-Control-Allow-Origin", "http://localhost:8081")
 
     // 允许该跨域的域名发送 Content-Type 请求头
     res.setHeader("Access-Control-Allow-Headers", "Content-Type")
@@ -32,7 +33,8 @@ app.all('*', (req, res, next) => {
 
 // 监听端口
 app.listen(
-    port, "0.0.0.0", // "0.0.0.0"指本机所有的ip、也可指定端口如 ${ipconfig}
+    port,
+    "0.0.0.0", // "0.0.0.0"指本机所有的ip、也可指定端口如 ${ipconfig}
     () => {
         console.log(`服务启动成功, 监听的端口是${port}。`)
     }
@@ -75,8 +77,12 @@ app.get('/dataTwo', (req, res) => {
     例如后端返回：
     function abc() {
         return {
-            name: "张三",
-            age: 18
+            msg: 'success',
+            data: {
+                name: "张三",
+                age: 18
+            },
+            code: '200'
         }
     }
 
@@ -85,3 +91,20 @@ app.get('/dataTwo', (req, res) => {
         const res = abc()// 由此获得数据
     </script>
 */
+
+// export default (url: string, data: any, headers: any, method: 'get' | 'post'): object => {
+//     return new Promise((resolve, reject) => {
+//         axios({
+//             url: APP_URL + url,
+//             data: data,
+//             headers: headers,
+//             method: method,
+//         }).then(res => {
+//             resolve(res.data)
+//         }).catch(err => {
+//             // 有些系统会将业务的错误归为系统的错误（后端协商）
+//             // 例如服务器返回500，应从resolve抛出
+//             reject(err)
+//         })
+//     })
+// } 
